@@ -1,0 +1,105 @@
+<table>
+    <tr>
+        <th>ID:</th>
+        <td><?php echo $user['id_user']; ?></td>
+    </tr>
+    <tr>
+        <th>APELLIDO:</th>
+        <td><?php echo $user['apellido']; ?></td>
+    </tr>
+    <tr>
+        <th>NOMBRE:</th>
+        <td><?php echo $user['nombre']; ?></td>
+    </tr>
+    <tr>
+        <th>E-MAIL:</th>
+        <td><?php echo $user['email']; ?></td>
+    </tr>
+    <tr>
+        <th>TELÉFONO:</th>
+        <td><?php echo $user['telefono']; ?></td>
+    </tr>
+    <tr>
+        <th colspan="2">&nbsp;</th>
+    </tr>
+    <tr>
+        <td>
+            <a href="index.php" title="Volver a la lista"><span class="fast-reverse-button emoji">⏪</span> a la lista</a>
+        </td>
+        <td>
+            <div class="actions">
+                <!-- Acción editar: método de envío GET -->
+                <a href="http://localhost/test/public/edit.php?id_user=<?php echo $user['id_user']; ?>"
+                    title="Editar registro"><span class="pen emoji">🖊️</span></a>
+                <!-- Acción eliminar: método de envío POST -->
+                <form action="http://localhost/test/public/delete.php" method="POST" style="display: inline-block;"
+                    title="Eliminar registro" id="form-delete">
+                    <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
+                    <button type="submit" class="icon-style"><span class="cross-mark emoji">❌</span></button>
+                </form>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<!-- Backdrop -->
+<div id="backdrop">
+    <div id="delete-dialog" title="¿Eliminar este registro?">
+        <p><span class="warning emoji" style="margin:0 7px 0 0;">⚠️</span>Este registro será eliminado. ¿Estás seguro?
+        </p>
+        <hr style="border: 1px solid #dee2e6;">
+        <div style="display:flex;justify-content: flex-end;"></div>
+    </div>
+</div>
+
+<script>
+
+    d.addEventListener('DOMContentLoaded', (e) => {
+        initDeleteDialog();
+    });
+
+    function initDeleteDialog() {
+        const formDelete = d.querySelector('#form-delete');
+
+        const deleteDialog = d.querySelector('#delete-dialog');
+        const backdrop = d.querySelector('#backdrop');
+
+        const okBtn = d.createElement("button");
+        const cancelBtn = d.createElement("button");
+
+        okBtn.textContent = "Aceptar";
+        okBtn.style.cssText = "margin-right: .25rem;";
+        cancelBtn.textContent = "Cancelar";
+        cancelBtn.style.cssText = "margin-left: .25rem;";
+
+        deleteDialog.getElementsByTagName("div")[0].appendChild(okBtn);
+        deleteDialog.getElementsByTagName("div")[0].appendChild(cancelBtn);
+
+        okBtn.onclick = function (e) {
+            backdrop.style.cssText = "display: none;";
+            eliminarRegistro(formDelete);
+        }
+
+        cancelBtn.onclick = function (e) {
+            backdrop.style.cssText = "display: none;";
+        }
+
+        formDelete.onsubmit = function (e) {
+            backdrop.style.cssText = "display: block;";
+            e.preventDefault();
+        };
+    }
+
+    function eliminarRegistro(el) {
+        const data = 'id_user=' + encodeURIComponent(el.id_user.value);
+        sendHttpRequest(el.method, el.action, data, responseHandler);
+    }
+
+    function responseHandler(response) {
+        if (response == 'Ok') {
+            location.href = 'http://localhost/test/public/index.php';
+        } else {
+            alert('Lo sentimos, no podemos procesar su solicitud.');
+        }
+    }
+</script>

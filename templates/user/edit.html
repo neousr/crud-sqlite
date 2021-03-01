@@ -1,0 +1,24 @@
+<form action="#" method="POST">
+    <div>
+        <label for="apellido">* Apellido:</label>
+        <input type="text" name="apellido" id="apellido" value="<?php echo $user['apellido'];?>">
+        <span><?php echo ($errors['apellido']) ?? ''; ?></span>
+    </div>
+    <div>
+        <label for="nombre">* Nombre:</label>
+        <input type="text" name="nombre" id="nombre" value="<?php echo $user['nombre'];?>">
+        <span><?php echo ($errors['nombre']) ?? ''; ?></span>
+    </div>
+    <div>
+        <label for="email">* E-mail:</label>
+        <input type="email" name="email" id="email" value="<?php echo $user['email'];?>">
+        <span><?php echo ($errors['email']) ?? ''; ?></span>
+    </div>
+    <div>
+        <label for="telefono">* Teléfono:</label>
+        <input type="tel" name="telefono" id="telefono" value="<?php echo $user['telefono'];?>">
+        <span><?php echo ($errors['telefono']) ?? ''; ?></span>
+    </div>
+    <button type="submit" name="guardar">Guardar</button>
+    <button type="submit" name="cancelar" value="cancelar">Cancelar</button>
+</form>
