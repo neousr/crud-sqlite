@@ -1,8 +1,51 @@
-<div>
-    <h1>Nuevo <a href="add.php"><span class="plus" style="font-size: 1rem;vertical-align: middle;">➕</span></a></h1>
+<div style="align-items: center;">
+    <h1>Usuario <a href="add.php" title="Agregar usuario"><span class="plus"
+                style="font-size: 1rem;vertical-align: middle;">➕</span></a></h1>
 </div>
-<table>
+<table id="dataTable" class="display" style="width:100%">
     <thead>
+        <tr>
+            <th class="d-none">ID</th>
+            <th>Apellido</th>
+            <th>Nombre</th>
+            <th>E-mail</th>
+            <th>Teléfono</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if ($users): ?>
+        <?php foreach ($users as $key => $user): ?>
+        <tr>
+            <td class="d-none">
+                <?php echo $user['id_user']; ?>
+            </td>
+            <td>
+                <?php echo $user['apellido']; ?>
+            </td>
+            <td>
+                <?php echo $user['nombre']; ?>
+            </td>
+            <td>
+                <?php echo $user['email']; ?>
+            </td>
+            <td>
+                <?php echo $user['telefono']; ?>
+            </td>
+            <td class="text-center">
+                <a href="http://localhost/test/public/detail.php?id_user=<?php echo $user['id_user']; ?>" title="Más">
+                    <span class="information emoji">ℹ️</span>
+                </a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        <?php else: ?>
+        <tr>
+            <td class="text-center" colspan="6">No hay registros disponibles</td>
+        </tr>
+        <?php endif; ?>
+    </tbody>
+    <!-- <tfoot>
         <tr>
             <th class="d-none">ID</th>
             <th>APELLIDO</th>
@@ -11,25 +54,5 @@
             <th>TELÉFONO</th>
             <th></th>
         </tr>
-    </thead>
-    <tbody>
-        <?php if ($users): ?>
-            <?php foreach ($users as $key => $user): ?>
-            <tr>
-                <td class="d-none"><?php echo $user['id_user']; ?></td>
-                <td><?php echo $user['apellido']; ?></td>
-                <td><?php echo $user['nombre']; ?></td>
-                <td><?php echo $user['email']; ?></td>
-                <td><?php echo $user['telefono']; ?></td>
-                <td class="text-center">
-                    <a href="http://localhost/test/public/detail.php?id_user=<?php echo $user['id_user']; ?>" title="Más">
-                        <span class="information emoji">ℹ️</span>
-                    </a>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <tr><td class="text-center" colspan="6">No hay registros disponibles</td></tr>
-        <?php endif; ?>
-    </tbody>
+    </tfoot> -->
 </table>

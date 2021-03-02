@@ -77,7 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $res = Db::query($q, ucwords($user['apellido']), ucwords($user['nombre']), $user['email'], $user['telefono'], $now, $now);
             if ($res) {
                 Flash::addFlash('Los datos fueron guardados correctamente.', 'success');
+
                 $user['id_user'] = Db::getInstance()->lastInsertId();
+                
                 header('Location: detail.php?id_user=' . $user['id_user']);
                 exit;
             } else {

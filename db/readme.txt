@@ -17,3 +17,5 @@ al igual que en el archivo de schema.sql
 
 https://www.mockaroo.com/
 Datos aleatorios para testear la app
+
+// if (!$rows) = count($rows) === 0,
