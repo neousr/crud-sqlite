@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,10 @@
 
     <?php if ($flashes): ?>
     <?php foreach ($flashes as $flash): ?>
-    <div class="alert alert-<?= $flash['class']; ?> text-center" role="alert">
+    <div class="alert alert-<?= $flash['class']; ?> text-center">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;
+            <!--✖️-->
+        </span>
         <?= htmlspecialchars( $flash['message'] ); ?>
     </div>
     <?php endforeach; ?>
@@ -33,15 +36,47 @@
         </div>
     </footer>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
     <script>
         $(document).ready(function () {
-            $('#dataTable').DataTable();
+            $('.dataTable').DataTable({
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "Nada encontrado - lo sentimos",
+                    // "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    "info": "Mostrando página _PAGE_ of _PAGES_",
+                    "infoEmpty": "Sin registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "search": "",
+                    "sSearchPlaceholder": 'Buscar...',
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sPrevious": "Anterior",
+                        "sNext": "Siguiente",
+                        "sLast": "Último"
+                    }
+                }
+            });
         });
+
+        // Get all elements with class="closebtn"
+        const close = document.getElementsByClassName("closebtn");
+        const M = close.length;
+        var i, div;
+        // Loop through all close buttons
+        for (i = 0; i < M; i++) {
+            close[i].onclick = function () {
+                // Get the parent of <span class="closebtn"> (<div class="alert">)
+                div = this.parentElement;
+                // Set the opacity of div to 0 (transparent)
+                div.style.opacity = "0";
+                // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                setTimeout(function () { div.style.display = "none"; }, 600);
+            }
+        }
     </script>
 </body>
 

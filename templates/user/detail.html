@@ -1,3 +1,14 @@
+<style>
+    table, td, th {
+        /* border: 1px solid #ddd; */
+        text-align: left;
+    }
+    table {
+        border-collapse: collapse;
+        /* width: 100%; */
+    }
+    th, td {padding: 8px;}
+</style>
 <div>
     <h1>Detalle de Usuario</h1>
     <p>Descripción de la vista de detalle</p>
@@ -8,19 +19,19 @@
         <td><?php echo $user['id_user']; ?></td>
     </tr>
     <tr>
-        <th>APELLIDO:</th>
+        <th>Apellido:</th>
         <td><?php echo $user['apellido']; ?></td>
     </tr>
     <tr>
-        <th>NOMBRE:</th>
+        <th>Nombre:</th>
         <td><?php echo $user['nombre']; ?></td>
     </tr>
     <tr>
-        <th>E-MAIL:</th>
+        <th>E-mail:</th>
         <td><?php echo $user['email']; ?></td>
     </tr>
     <tr>
-        <th>TELÉFONO:</th>
+        <th>Teléfono:</th>
         <td><?php echo $user['telefono']; ?></td>
     </tr>
     <tr>
