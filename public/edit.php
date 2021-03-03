@@ -1,13 +1,27 @@
 <?php
 
 require_once '../includes/config.php';
-
 require_once '../src/Flash.php';
+require_once '../src/Token.php';
 
 $user = getUserByGetId();
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (array_key_exists('token', $_POST)) {
+        if (!Token::validate(escape($_POST['token']))) {
+            // Si el token CSRF que enviaron no coincide con el que enviamos.
+            // redirect('/usuario_logout.php');
+            header('Location: index.php');
+            exit;
+        }
+    }
+    // No existe la key token
+    else {
+        // redirect('/usuario_logout.php');
+        header('Location: index.php');
+        exit;
+    }
 
     if (array_key_exists('cancelar', $_POST)) {
         // Re dirigimos al usuario a la vista de detalle. Para lograr esto sin usar la variable de sesión.
@@ -84,11 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$template = '../templates/user/edit.html';
+$template = DOCUMENT_ROOT . '/templates/user/edit.html';
 
 $flashes = null;
 if (Flash::hasFlashes()) {
     $flashes = Flash::getFlashes();
 }
 
-require_once '../templates/index.html';
+require_once DOCUMENT_ROOT . '/templates/index.html';

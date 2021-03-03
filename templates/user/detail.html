@@ -2,12 +2,12 @@
     table,
     td,
     th {
-        border: 1px solid #ddd;
+        /* border: 1px solid #ddd; */
         text-align: left;
     }
 
     table {
-        border-collapse: collapse;
+        /* border-collapse: collapse; */
         width: 100%;
     }
 
@@ -23,33 +23,23 @@
 <table>
     <tr class="d-none">
         <th>ID:</th>
-        <td>
-            <?php echo $user['id_user']; ?>
-        </td>
+        <td><?php echo $user['id_user']; ?></td>
     </tr>
     <tr>
         <th>Apellido:</th>
-        <td>
-            <?php echo $user['apellido']; ?>
-        </td>
+        <td><?php echo $user['apellido']; ?></td>
     </tr>
     <tr>
         <th>Nombre:</th>
-        <td>
-            <?php echo $user['nombre']; ?>
-        </td>
+        <td><?php echo $user['nombre']; ?></td>
     </tr>
     <tr>
         <th>E-mail:</th>
-        <td>
-            <?php echo $user['email']; ?>
-        </td>
+        <td><?php echo $user['email']; ?></td>
     </tr>
     <tr>
         <th>Teléfono:</th>
-        <td>
-            <?php echo $user['telefono']; ?>
-        </td>
+        <td><?php echo $user['telefono']; ?></td>
     </tr>
     <tr>
         <th colspan="2">&nbsp;</th>
@@ -68,7 +58,7 @@
                 <form action="<?php echo BASE_URL; ?>/delete.php" method="POST" style="display: inline-block;"
                     title="Eliminar registro" id="form-delete">
                     <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
-                    <button type="submit" class="icon-style"><span class="cross-mark emoji">❌</span></button>
+                    <button type="submit" class="icon"><span class="cross-mark emoji">❌</span></button>
                 </form>
             </div>
         </td>
@@ -105,7 +95,7 @@
         // Get the modal
         const deleteModal = d.querySelector("#delete-modal");
         // Get the <span> element that closes the modal
-        const span = d.getElementsByClassName("close")[0];
+        const span = deleteModal.querySelector(".close");
         // Create buttons
         const okBtn = d.createElement("button"), cancelBtn = d.createElement("button");
 

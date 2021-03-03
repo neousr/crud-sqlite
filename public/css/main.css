@@ -101,16 +101,14 @@ a {
 .modal-footer .btn {
     padding: .4em 1em;
     font-size: 1rem;
-    border-radius: 5px;
+    font-weight: bold;
+    background: #dfeffc;
     color: #2e6e9e;
     border: 1px solid #c5dbec;
-    background: #dfeffc;
-    font-weight: bold;
+    border-radius: 5px;
     margin: .5em .4em .5em 0;
     cursor: pointer;
-    vertical-align: middle;
     text-align: center;
-    display: inline-block;
     line-height: normal;
 }
 
@@ -124,7 +122,7 @@ a {
 /* Fin delete dialog */
 
 /* Button estilo ícono */
-button.icon-style {
+button.icon {
     padding: 0;
     margin-left: 8px;
     background: transparent;
@@ -132,7 +130,7 @@ button.icon-style {
     cursor: pointer;
 }
 
-button.icon-style:focus {
+button.icon:focus {
     outline: none;
 }
 /* Fin button */

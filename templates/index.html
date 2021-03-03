@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pruebas</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/main.css">
+    <script src="<?php echo BASE_URL; ?>/js/main.js"></script>
+    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-    <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -18,9 +19,7 @@
     <?php if ($flashes): ?>
     <?php foreach ($flashes as $flash): ?>
     <div class="alert alert-<?= $flash['class']; ?> text-center">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;
-            <!--✖️-->
-        </span>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         <?= htmlspecialchars( $flash['message'] ); ?>
     </div>
     <?php endforeach; ?>
@@ -46,8 +45,8 @@
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ registros por página",
                     "zeroRecords": "Nada encontrado - lo sentimos",
-                    // "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                    "info": "Mostrando página _PAGE_ of _PAGES_",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    // "info": "Mostrando página _PAGE_ of _PAGES_",
                     "infoEmpty": "Sin registros disponibles",
                     "infoFiltered": "(filtrado de _MAX_ registros totales)",
                     "search": "",

@@ -6,11 +6,11 @@ $user = getUserByGetId();
 
 require_once '../src/Flash.php';
 
-$template = '../templates/user/detail.html';
+$template = DOCUMENT_ROOT . '/templates/user/detail.html';
 
 $flashes = null;
 if (Flash::hasFlashes()) {
     $flashes = Flash::getFlashes();
 }
 
-require_once '../templates/index.html';
+require_once DOCUMENT_ROOT . '/templates/index.html';

@@ -3,35 +3,37 @@
         <h1>Agregar Registro</h1>
         <p>Ingrese sus datos para registrarse</p>
     </div>
-    <form action="#" method="POST">
+    <form action="" method="POST">
+        <input type="hidden" name="token" value="<?= htmlspecialchars(Token::csrf()); ?>" readonly spellcheck="false"
+            autocomplete="off" autocorrect="off" autocapitalize="off">
         <div class="mb-3">
             <label for="apellido">* Apellido:</label>
-            <input type="text" name="apellido" id="apellido" value="<?php echo $user['apellido'];?>" spellcheck="false" autocomplete="off" autocorrect="off"
-            autocapitalize="off" maxlength="40">
+            <input type="text" name="apellido" id="apellido" value="<?php echo $user['apellido'];?>" spellcheck="false"
+                autocomplete="off" autocorrect="off" autocapitalize="off" maxlength="40">
             <span class="form-error">
                 <?php echo ($errors['apellido']) ?? ''; ?>
             </span>
         </div>
         <div class="mb-3">
             <label for="nombre">* Nombre:</label>
-            <input type="text" name="nombre" id="nombre" value="<?php echo $user['nombre'];?>" spellcheck="false" autocomplete="off" autocorrect="off"
-            autocapitalize="off" maxlength="40">
+            <input type="text" name="nombre" id="nombre" value="<?php echo $user['nombre'];?>" spellcheck="false"
+                autocomplete="off" autocorrect="off" autocapitalize="off" maxlength="40">
             <span class="form-error">
                 <?php echo ($errors['nombre']) ?? ''; ?>
             </span>
         </div>
         <div class="mb-3">
             <label for="email">* E-mail:</label>
-            <input type="email" name="email" id="email" value="<?php echo $user['email'];?>" spellcheck="false" autocomplete="off" autocorrect="off"
-            autocapitalize="off">
+            <input type="email" name="email" id="email" value="<?php echo $user['email'];?>" spellcheck="false"
+                autocomplete="off" autocorrect="off" autocapitalize="off">
             <span class="form-error">
                 <?php echo ($errors['email']) ?? ''; ?>
             </span>
         </div>
         <div class="mb-3">
             <label for="telefono">* Teléfono:</label>
-            <input type="tel" name="telefono" id="telefono" value="<?php echo $user['telefono'];?>" spellcheck="false" autocomplete="off" autocorrect="off"
-            autocapitalize="off">
+            <input type="tel" name="telefono" id="telefono" value="<?php echo $user['telefono'];?>" spellcheck="false"
+                autocomplete="off" autocorrect="off" autocapitalize="off">
             <span class="form-error">
                 <?php echo ($errors['telefono']) ?? ''; ?>
             </span>
