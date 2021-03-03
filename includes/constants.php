@@ -1,9 +1,19 @@
 <?php
 
+define('DOCUMENT_ROOT', dirname(__DIR__));
+define('BASE_URL', 'http://localhost/crud-sqlite/public');
+
 define('LONGITUD_MAXIMA', 40);
 define('LONGITUD_MINIMA', 3);
-define('MAX_PASSWORD_LENGTH', 64);
+define('LONGITUD_MINIMA_EMAIL', 6);
+define('LONGITUD_MAXIMA_EMAIL', 30);
+define('MAX_PASSWORD_LENGTH', 60);
+define('MIN_PASSWORD_LENGTH', 8);
+define('PASSWORD_SYMBOLS', '@.-_~!#$%^&*');
+// https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#peppering
+define('PEPPER', 'r8UN#uHVX5x~&4+ZaG&y'); // 20 caracteres
 
+// Feedback messages
 $messages = [
     'required' => 'Este campo es requerido.',
     'onlyLetters' => 'Solo se permiten letras (a-zA-Z), y espacios en blanco.',

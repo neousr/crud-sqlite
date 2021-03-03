@@ -1,53 +1,71 @@
 <style>
-    table, td, th {
-        /* border: 1px solid #ddd; */
+    table,
+    td,
+    th {
+        border: 1px solid #ddd;
         text-align: left;
     }
+
     table {
         border-collapse: collapse;
-        /* width: 100%; */
+        width: 100%;
     }
-    th, td {padding: 8px;}
+
+    th,
+    td {
+        padding: 8px;
+    }
 </style>
 <div>
-    <h1>Detalle de Usuario</h1>
+    <h1>Detalle de Registro</h1>
     <p>Descripción de la vista de detalle</p>
 </div>
 <table>
     <tr class="d-none">
         <th>ID:</th>
-        <td><?php echo $user['id_user']; ?></td>
+        <td>
+            <?php echo $user['id_user']; ?>
+        </td>
     </tr>
     <tr>
         <th>Apellido:</th>
-        <td><?php echo $user['apellido']; ?></td>
+        <td>
+            <?php echo $user['apellido']; ?>
+        </td>
     </tr>
     <tr>
         <th>Nombre:</th>
-        <td><?php echo $user['nombre']; ?></td>
+        <td>
+            <?php echo $user['nombre']; ?>
+        </td>
     </tr>
     <tr>
         <th>E-mail:</th>
-        <td><?php echo $user['email']; ?></td>
+        <td>
+            <?php echo $user['email']; ?>
+        </td>
     </tr>
     <tr>
         <th>Teléfono:</th>
-        <td><?php echo $user['telefono']; ?></td>
+        <td>
+            <?php echo $user['telefono']; ?>
+        </td>
     </tr>
     <tr>
         <th colspan="2">&nbsp;</th>
     </tr>
     <tr>
         <td>
-            <a href="index.php" title="Volver a la lista"><span class="fast-reverse-button emoji">⏪</span> a la lista</a>
+            <a href="<?php echo BASE_URL; ?>/index.php" title="Volver a la lista"><span
+                    class="fast-reverse-button emoji">⏪</span> a la lista</a>
         </td>
         <td>
             <div class="actions">
                 <!-- Acción editar: método de envío GET -->
-                <a href="http://localhost/test/public/edit.php?id_user=<?php echo $user['id_user']; ?>"
+                <a href="<?php echo BASE_URL; ?>/edit.php?id_user=<?php echo $user['id_user']; ?>"
                     title="Editar registro"><span class="pen emoji">🖊️</span></a>
                 <!-- Acción eliminar: método de envío POST -->
-                <form action="http://localhost/test/public/delete.php" method="POST" style="display: inline-block;"
+                <form action="<?php echo BASE_URL; ?>/delete.php" method="POST" style="display: inline-block;"
                     title="Eliminar registro" id="form-delete">
                     <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
                     <button type="submit" class="icon-style"><span class="cross-mark emoji">❌</span></button>
@@ -57,13 +75,21 @@
     </tr>
 </table>
 
-<!-- Backdrop -->
-<div id="backdrop">
-    <div id="delete-dialog" title="¿Eliminar este registro?">
-        <p><span class="warning emoji" style="margin:0 7px 0 0;">⚠️</span>Este registro será eliminado. ¿Estás seguro?
-        </p>
-        <hr style="border: 1px solid #dee2e6;">
-        <div style="display:flex;justify-content: flex-end;"></div>
+<!-- The Modal -->
+<div id="delete-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h3>Eliminar registro</h3>
+        </div>
+        <div class="modal-body">
+            <p style="margin-bottom: 1.5rem;">
+                <span class="warning emoji">⚠️</span> Este registro será
+                eliminado. ¿Estás seguro?
+            </p>
+        </div>
+        <div class="modal-footer"></div>
     </div>
 </div>
 
@@ -74,35 +100,49 @@
     });
 
     function initDeleteDialog() {
+        // Get the form
         const formDelete = d.querySelector('#form-delete');
-
-        const deleteDialog = d.querySelector('#delete-dialog');
-        const backdrop = d.querySelector('#backdrop');
-
-        const okBtn = d.createElement("button");
-        const cancelBtn = d.createElement("button");
+        // Get the modal
+        const deleteModal = d.querySelector("#delete-modal");
+        // Get the <span> element that closes the modal
+        const span = d.getElementsByClassName("close")[0];
+        // Create buttons
+        const okBtn = d.createElement("button"), cancelBtn = d.createElement("button");
 
         okBtn.textContent = "Aceptar";
-        okBtn.style.cssText = "margin-right: .25rem;";
+        okBtn.classList.add('btn');
         cancelBtn.textContent = "Cancelar";
-        cancelBtn.style.cssText = "margin-left: .25rem;";
-
-        deleteDialog.getElementsByTagName("div")[0].appendChild(okBtn);
-        deleteDialog.getElementsByTagName("div")[0].appendChild(cancelBtn);
+        cancelBtn.classList.add('btn');
+        const modalFooter = deleteModal.querySelector('.modal-footer');
+        modalFooter.appendChild(okBtn);
+        modalFooter.appendChild(cancelBtn);
 
         okBtn.onclick = function (e) {
-            backdrop.style.cssText = "display: none;";
+            deleteModal.style.cssText = "display: none;";
             eliminarRegistro(formDelete);
         }
 
         cancelBtn.onclick = function (e) {
-            backdrop.style.cssText = "display: none;";
+            deleteModal.style.cssText = "display: none;";
         }
 
+        // When the user submit the form, open the modal 
         formDelete.onsubmit = function (e) {
-            backdrop.style.cssText = "display: block;";
+            deleteModal.style.cssText = "display: block;";
             e.preventDefault();
         };
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            deleteModal.style.display = "none";
+        }
+
+        // When the user press the escape keyboard, close the modal
+        d.onkeydown = function (event) {
+            event = event || window.event;
+            if (event.keyCode == 27) {
+                deleteModal.style.display = "none";
+            }
+        }
     }
 
     function eliminarRegistro(el) {
@@ -112,7 +152,7 @@
 
     function responseHandler(response) {
         if (response == 'Ok') {
-            location.href = 'http://localhost/test/public/index.php';
+            location.href = '<?php echo BASE_URL; ?>/index.php';
         } else {
             alert('Lo sentimos, no podemos procesar su solicitud.');
         }
