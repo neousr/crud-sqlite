@@ -8,7 +8,7 @@
     <title>Pruebas</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/main.css">
     <script src="<?php echo BASE_URL; ?>/js/main.js"></script>
-    
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 </head>
 
@@ -59,23 +59,28 @@
                     }
                 }
             });
+
+            closeAlerts();
         });
 
-        // Get all elements with class="closebtn"
-        const close = document.getElementsByClassName("closebtn");
-        const M = close.length;
-        var i, div;
-        // Loop through all close buttons
-        for (i = 0; i < M; i++) {
-            close[i].onclick = function () {
-                // Get the parent of <span class="closebtn"> (<div class="alert">)
-                div = this.parentElement;
-                // Set the opacity of div to 0 (transparent)
-                div.style.opacity = "0";
-                // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
-                setTimeout(function () { div.style.display = "none"; }, 600);
+        function closeAlerts() {
+            // Get all elements with class="closebtn"
+            const close = document.getElementsByClassName("closebtn");
+            const M = close.length;
+            var i, div;
+            // Loop through all close buttons
+            for (i = 0; i < M; i++) {
+                close[i].onclick = function () {
+                    // Get the parent of <span class="closebtn"> (<div class="alert">)
+                    div = this.parentElement;
+                    // Set the opacity of div to 0 (transparent)
+                    div.style.opacity = "0";
+                    // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                    setTimeout(function () { div.style.display = "none"; }, 600);
+                }
             }
         }
+
     </script>
 </body>
 
