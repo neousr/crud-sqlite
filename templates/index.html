@@ -61,7 +61,14 @@
             });
 
             closeAlerts();
+            initFormErrors();
         });
+
+        // Focus en el primer error que exista en formularios.
+        function initFormErrors() {
+            const obj = document.querySelector('form .invalid');
+            if (obj) obj.focus();
+        }
 
         function closeAlerts() {
             // Get all elements with class="closebtn"

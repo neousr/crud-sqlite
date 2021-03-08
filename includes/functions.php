@@ -1,8 +1,5 @@
 <?php
 
-require_once '../src/Db.php';
-require_once '../src/NotFoundException.php';
-
 function escape(string $s) : string {
     return htmlspecialchars(stripslashes(trim($s)));
 }
@@ -33,20 +30,6 @@ function getUserByGetId() {
         }
     }
     return $rows[0];
-}
-
-function handleException($e) {
-    $extra = ['message' => $e->getMessage()];
-    $flashes = null;
-    if ($e instanceof NotFoundException) {
-        header('HTTP/1.0 404 Not Found');
-        $template = '../templates/error/404.html';
-    } else {
-        // TODO log exception
-        header('HTTP/1.1 500 Internal Server Error');
-        $template = '../templates/error/500.html';
-    }
-    require_once '../templates/index.html';
 }
 
 /**

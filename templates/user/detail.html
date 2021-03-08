@@ -42,6 +42,14 @@
         <td><?php echo $user['telefono']; ?></td>
     </tr>
     <tr>
+        <th>Fecha de Alta:</th>
+        <td><?php echo $user['creado']; ?></td>
+    </tr>
+    <tr>
+        <th>Última Modificación:</th>
+        <td><?php echo $user['modificado']; ?></td>
+    </tr>
+    <tr>
         <th colspan="2">&nbsp;</th>
     </tr>
     <tr>
@@ -58,7 +66,7 @@
                 <form action="<?php echo BASE_URL; ?>/delete.php" method="POST" style="display: inline-block;"
                     title="Eliminar registro" id="form-delete">
                     <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
-                    <button type="submit" class="icon"><span class="cross-mark emoji">❌</span></button>
+                    <button type="submit" class="icon fs-16"><span class="cross-mark emoji">❌</span></button>
                 </form>
             </div>
         </td>

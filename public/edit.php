@@ -1,8 +1,6 @@
 <?php
 
 require_once '../includes/config.php';
-require_once '../src/Flash.php';
-require_once '../src/Token.php';
 
 $user = getUserByGetId();
 $errors = [];

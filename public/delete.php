@@ -1,11 +1,18 @@
 <?php
-
-require_once '../includes/config.php';
+/**
+ * Para no requerir archivos que contienen rutinas que no vamos a utilizar,
+ * este archivo solo requiere lo necesario para ejecutarse correctamente, solo
+ * si se accede a el a través del método post.
+ */
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     header('Location: index.php');
     exit;
 }
+
+require_once '../includes/functions.php';
+require_once '../src/Db.php';
 
 $id_user = null;
 $error = null;

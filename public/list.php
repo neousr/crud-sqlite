@@ -2,8 +2,6 @@
 
 require_once '../includes/config.php';
 
-require_once '../src/Flash.php';
-
 // Verificar si existen registros
 $users = Db::query('SELECT id_user, apellido, nombre, email, telefono FROM user WHERE eliminado = 0;');
 

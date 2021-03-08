@@ -152,7 +152,7 @@ label {
 }
 
 /* Form */
-form input {
+.form-input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -160,8 +160,12 @@ form input {
     font-size: 14px;
 }
 
-form input:focus {
+.form-input:focus {
     outline: none;
+}
+
+.form-input.invalid {
+    border: 1px solid #dc143c;
 }
 
 .form-error {
@@ -224,4 +228,12 @@ form input:focus {
 .emoji.plus {
     font-size: 1rem;
     vertical-align: middle;
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+
+.fs-14 {
+    font-size: 14px;
 }
