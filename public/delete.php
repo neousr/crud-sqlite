@@ -41,7 +41,7 @@ if ( $error ) {
 $res = Db::query('UPDATE user SET eliminado = 1 WHERE id_user = ?;', $id_user);
 
 if ( !$res ) {
-    echo 'Error: no pudimos eliminar el registro de usuario.';
+    echo 'Error: no pudimos eliminar el registro.';
     exit;
 }
 

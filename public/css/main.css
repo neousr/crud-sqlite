@@ -151,7 +151,7 @@ label {
     color: #2D2D2D;
 }
 
-/* Form */
+/* Form - estilos de input text */
 .form-input {
     width: 100%;
     padding: 10px;
@@ -226,7 +226,7 @@ label {
 }
 
 .emoji.plus {
-    font-size: 1rem;
+    font-size: 16px;
     vertical-align: middle;
 }
 

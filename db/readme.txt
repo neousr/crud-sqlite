@@ -1,7 +1,7 @@
 https://www.sqlite.org/cli.html
 
 1. Crear una Base de Datos sqlite
-$ sqlite3 dbname.db/sqlite/sqlite3/db3
+$ sqlite3 dbname./db/sqlite/sqlite3/db3
 
 2. Leer SQL desde un archivo (por ejm. el DDL en el archivo schema.sql)
 sqlite> .read route/to/schema.sql
