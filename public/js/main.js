@@ -32,3 +32,23 @@ function sendHttpRequest(method, url, data, callback) {
         console.log("Error: " + e + " Could not load url.");
     }
 }
+
+function isEmpty(str) {
+    return (str.length == 0);
+}
+
+function setError(el, msg) {
+    el.classList.add("invalid");
+    el.parentNode.querySelector('.form-error').innerHTML = msg;
+}
+
+function setSuccess(el) {
+    el.classList.remove("invalid");
+    el.parentNode.querySelector('.form-error').innerHTML = "";
+}
+
+function validEmail(email) {
+    // https://owasp.org/www-community/OWASP_Validation_Regex_Repository
+    const regexEmail = /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
+    return regexEmail.test(email);
+}

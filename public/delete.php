@@ -14,8 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 require_once '../includes/functions.php';
 require_once '../src/Db.php';
 
-$id_user = null;
-$error = null;
+$id_user = $error = null;
 
 if (array_key_exists('id_user', $_POST)) {
     $id_user = escape( $_POST['id_user'] );
@@ -50,3 +49,5 @@ require_once '../src/Flash.php';
 Flash::addFlash('El registro fue eliminado correctamente.', 'success');
 
 echo 'Ok';
+
+// if (!$rows) = count($rows) === 0

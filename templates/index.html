@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pruebas</title>
+
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/main.css">
+
     <script src="<?php echo BASE_URL; ?>/js/main.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
@@ -14,21 +16,26 @@
 
 <body>
 
-    <header></header>
+    <!-- Header -->
+    <header class="text-center">
+        <h1>Mi aplicación CRUD</h1>
+    </header>
 
     <?php if ($flashes): ?>
     <?php foreach ($flashes as $flash): ?>
     <div class="alert alert-<?= $flash['class']; ?> text-center">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <span class="closebtn" onclick="this.parentElement.style.display='none';" title="cerrar">&times;</span>
         <?= htmlspecialchars( $flash['message'] ); ?>
     </div>
     <?php endforeach; ?>
     <?php endif; ?>
 
+    <!-- Main -->
     <main>
         <?php require_once $template; ?>
     </main>
 
+    <!-- Footer -->
     <footer style="margin-top: 2rem;">
         <div class="text-center">
             <p class="fs-14">Copyright <span class="copyright emoji">©️</span> 2019 | Desarrollado por Julio Cesar</p>
@@ -59,20 +66,23 @@
                     }
                 }
             });
+        });
 
+        document.addEventListener('DOMContentLoaded', () => {
+            initEmailValidation();
             closeAlerts();
             initFormErrors();
         });
 
         // Focus en el primer error que exista en formularios.
         function initFormErrors() {
-            const obj = document.querySelector('form .invalid');
+            const obj = d.querySelector('form .invalid');
             if (obj) obj.focus();
         }
 
         function closeAlerts() {
             // Get all elements with class="closebtn"
-            const close = document.getElementsByClassName("closebtn");
+            const close = d.getElementsByClassName("closebtn");
             const M = close.length;
             var i, div;
             // Loop through all close buttons
@@ -86,6 +96,31 @@
                     setTimeout(function () { div.style.display = "none"; }, 600);
                 }
             }
+        }
+
+        function initEmailValidation() {
+            const email = d.querySelector("form #email");
+            if (!email) return;
+            email.addEventListener("blur", function (e) {
+                const value = email.value.trim();
+                if (isEmpty(value)) {
+                    // setError(email, "No puedes dejar este campo en blanco.");
+                }
+                // Validamos que sea un e-mail válido
+                else if (validEmail(value)) {
+                    // Solicitud AJAX
+                    const data = "email=" + encodeURIComponent(value.toLowerCase());
+                    sendHttpRequest('POST', '<?php echo BASE_URL; ?>/email_exists.php', data, (response) => {
+                        if (response == "Ok") {
+                            setSuccess(email);
+                        } else {
+                            setError(email, response);
+                        }
+                    });
+                } else {
+                    setError(email, "Introduce una dirección de correo electrónico válida.");
+                }
+            });
         }
 
     </script>
