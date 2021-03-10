@@ -13,38 +13,31 @@
             <input type="text" name="apellido" id="apellido" value="<?php echo $user['apellido']; ?>" spellcheck="false"
                 autocomplete="off" autocorrect="off" autocapitalize="off" maxlength="40"
                 class="form-input <?php echo isset($errors['apellido']) ? 'invalid' : ''; ?>">
-            <span class="form-error">
-                <?php echo ($errors['apellido']) ?? ''; ?>
-            </span>
+            <span class="form-error"><?php echo ($errors['apellido']) ?? ''; ?></span>
         </div>
         <div class="mb-3">
             <label for="nombre">* Nombre:</label>
             <input type="text" name="nombre" id="nombre" value="<?php echo $user['nombre']; ?>" spellcheck="false"
                 autocomplete="off" autocorrect="off" autocapitalize="off" maxlength="40"
                 class="form-input <?php echo isset($errors['nombre']) ? 'invalid' : ''; ?>">
-            <span class="form-error">
-                <?php echo ($errors['nombre']) ?? ''; ?>
-            </span>
+            <span class="form-error"><?php echo ($errors['nombre']) ?? ''; ?></span>
         </div>
         <div class="mb-3">
             <label for="email">* E-mail:</label>
             <input type="email" name="email" id="email" value="<?php echo $user['email']; ?>" spellcheck="false"
                 autocomplete="off" autocorrect="off" autocapitalize="off"
                 class="form-input <?php echo isset($errors['email']) ? 'invalid' : ''; ?>">
-            <span class="form-error">
-                <?php echo ($errors['email']) ?? ''; ?>
-            </span>
+            <span class="form-error"><?php echo ($errors['email']) ?? ''; ?></span>
         </div>
         <div class="mb-3">
             <label for="telefono">* Teléfono:</label>
             <input type="tel" name="telefono" id="telefono" value="<?php echo $user['telefono']; ?>" spellcheck="false"
                 autocomplete="off" autocorrect="off" autocapitalize="off"
                 class="form-input <?php echo isset($errors['telefono']) ? 'invalid' : ''; ?>">
-            <span class="form-error">
-                <?php echo ($errors['telefono']) ?? ''; ?>
-            </span>
+            <span class="form-error"><?php echo ($errors['telefono']) ?? ''; ?></span>
         </div>
-        <button type="submit" name="guardar" class="btn">Guardar</button>
-        <button type="submit" name="cancelar" value="cancelar" class="btn">Cancelar</button>
+        <button type="submit" name="guardar" class="btn btn-black">Guardar</button>
+        <!-- <button type="submit" name="cancelar" value="cancelar" class="btn btn-black">Cancelar</button> -->
+        <a href="<?php echo BASE_URL; ?>/index.php" class="btn btn-black">Cancelar</a>
     </form>
 </div>

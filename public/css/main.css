@@ -10,6 +10,7 @@ body {
 
 a {
     text-decoration: none !important;
+    font-family: tahoma;
 }
 
 /* Delete Dialog */
@@ -184,13 +185,23 @@ label {
 }
 
 .btn {
-    background-color: #212529;
-    border: none;
-    padding: 8px 16px;
-    color: #fff;
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: initial;
     font-size: 1rem;
+    padding: 8px 16px;
     cursor: pointer;
     border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.btn-black {
+    color: #fff;
+    background-color: #1a1e21;
+    border-color: #191c1f;
 }
 
 /* Alert */

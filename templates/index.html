@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="es" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Pruebas</title>
 
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/main.css">
@@ -12,13 +12,24 @@
     <script src="<?php echo BASE_URL; ?>/js/main.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-</head>
 
+    <style>
+        header a>span {
+            letter-spacing: .2em;
+            font-size: 3em;
+        }
+    </style>
+</head>
 <body>
 
     <!-- Header -->
-    <header class="text-center">
-        <h1>Mi aplicación CRUD</h1>
+    <header class="text-center" style="margin: 2rem 0 1rem 0;">
+        <a href="<?php echo BASE_URL; ?>/index.php">
+            <span title="create">🖊️</span>
+            <span title="read">📖</span>
+            <span title="update">🔄</span>
+            <span title="delete">🗑️</span>
+        </a>
     </header>
 
     <?php if ($flashes): ?>
@@ -36,7 +47,7 @@
     </main>
 
     <!-- Footer -->
-    <footer style="margin-top: 2rem;">
+    <footer style="margin: 2rem 0;">
         <div class="text-center">
             <p class="fs-14">Copyright <span class="copyright emoji">©️</span> 2019 | Desarrollado por Julio Cesar</p>
         </div>
@@ -98,6 +109,7 @@
             }
         }
 
+        // Solo verificará la existencia o no del e-mail
         function initEmailValidation() {
             const email = d.querySelector("form #email");
             if (!email) return;
@@ -105,25 +117,22 @@
                 const value = email.value.trim();
                 if (isEmpty(value)) {
                     // setError(email, "No puedes dejar este campo en blanco.");
-                }
-                // Validamos que sea un e-mail válido
-                else if (validEmail(value)) {
+                } else if (!validEmail(value)) {
+                    // setError(email, "Introduce una dirección de correo electrónico válida.");
+                } else {
                     // Solicitud AJAX
                     const data = "email=" + encodeURIComponent(value.toLowerCase());
-                    sendHttpRequest('POST', '<?php echo BASE_URL; ?>/email_exists.php', data, (response) => {
-                        if (response == "Ok") {
+                    sendHttpRequest('POST', '<?php echo BASE_URL; ?>/email_exists.php', data, (res) => {
+                        if (res == "Ok") {
                             setSuccess(email);
                         } else {
-                            setError(email, response);
+                            setError(email, res);
                         }
                     });
-                } else {
-                    setError(email, "Introduce una dirección de correo electrónico válida.");
                 }
             });
         }
 
     </script>
 </body>
-
 </html>
