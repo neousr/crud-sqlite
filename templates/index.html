@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
+
 <head>
     <meta charset="utf-8">
 
@@ -7,19 +8,21 @@
 
     <title>Pruebas</title>
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/jquery.dataTables.min.css">
+    <!-- Estilos propios -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/main.css">
 
     <script src="<?php echo BASE_URL; ?>/js/main.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
-
     <style>
         header a>span {
-            letter-spacing: .2em;
-            font-size: 3em;
+            letter-spacing: .2rem;
+            font-size: 3rem;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Header -->
@@ -53,9 +56,10 @@
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <!-- jQuery 3.5.1 -->
+    <script src="<?php echo BASE_URL; ?>/js/jquery.min.js"></script>
+    <!-- DatatTables JS -->
+    <script src="<?php echo BASE_URL; ?>/js/jquery.dataTables.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -135,4 +139,5 @@
 
     </script>
 </body>
+
 </html>
