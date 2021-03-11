@@ -1,10 +1,9 @@
 <style>
-table.detail th {text-align: right;}
-table.detail td {padding: 2px 14px;}
+    table.detail th {text-align: right;}
+    table.detail td {padding: 2px 14px;}
 </style>
 <div>
     <h2>Detalle de Registro</h2>
-    <p>Descripción de la vista de detalle</p>
 </div>
 <table class="detail">
     <tr class="d-none">
@@ -131,14 +130,12 @@ table.detail td {padding: 2px 14px;}
 
     function eliminarRegistro(el) {
         const data = 'id_user=' + encodeURIComponent(el.id_user.value);
-        sendHttpRequest(el.method, el.action, data, responseHandler);
-    }
-
-    function responseHandler(response) {
-        if (response == 'Ok') {
-            location.href = '<?php echo BASE_URL; ?>/index.php';
-        } else {
-            alert('Lo sentimos, no podemos procesar su solicitud.');
-        }
+        sendHttpRequest(el.method, el.action, data, (response) => {
+            if (response == 'Ok') {
+                location.href = '<?php echo BASE_URL; ?>/index.php';
+            } else {
+                alert('Lo sentimos, no podemos procesar su solicitud.');
+            }
+        });
     }
 </script>
