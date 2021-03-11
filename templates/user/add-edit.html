@@ -1,6 +1,6 @@
 <div class="form-wrapper">
     <div>
-        <h2>Editar Registro</h2>
+        <h2><?php echo $edit ? 'Editar' : 'Agregar'; ?> Registro</h2>
         <p>Ingrese los nuevos valores</p>
     </div>
     <form action="#" method="POST">
@@ -36,8 +36,12 @@
                 class="form-input <?php echo isset($errors['telefono']) ? 'invalid' : ''; ?>">
             <span class="form-error"><?php echo ($errors['telefono']) ?? ''; ?></span>
         </div>
-        <button type="submit" name="guardar" class="btn btn-black">Guardar</button>
+        <button type="submit" name="guardar" class="btn btn-black"><?php echo $edit ? 'Editar' : 'Agregar'; ?></button>
         <!-- <button type="submit" name="cancelar" value="cancelar" class="btn btn-black">Cancelar</button> -->
+        <?php if($user['id_user'] === null): ?>
+        <a href="<?php echo BASE_URL; ?>/index.php" class="btn btn-black">Cancelar</a>
+        <?php else: ?>
         <a href="<?php echo BASE_URL; ?>/detail.php?id_user=<?php echo $user['id_user']; ?>" class="btn btn-black">Cancelar</a>
+        <?php endif; ?>
     </form>
 </div>

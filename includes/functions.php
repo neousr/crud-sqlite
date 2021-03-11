@@ -86,7 +86,7 @@ function existeEmailUser($email, $id_user = null) {
     } else {
         $res = Db::query('SELECT email FROM user WHERE email = ? LIMIT 1;', $email);
     }
-    return ($res) ? true : false;
+    return ($res) ?? false;
 }
 
 /**
