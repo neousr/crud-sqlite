@@ -23,11 +23,19 @@ function getUserByGetId() {
     } elseif ( !is_numeric($id_user) ) {
         throw new NotFoundException('El parámetro URL id_user contiene un identificador no válido.');
     } else {
-        // Esta consulta solicita todas las columnas del registro
-        $rows = Db::query('SELECT * FROM user WHERE eliminado = 0 AND id_user = ? LIMIT 1;', $id_user);
-        if ( !$rows ) {
+        $user = getUserById($id_user);
+        if ($user === null) {
             throw new NotFoundException('La búsqueda ha devuelto ningún resultado.');
         }
+    }
+    return $user;
+}
+
+function getUserById($id_user) {
+    // Esta consulta solicita todas las columnas del registro
+    $rows = Db::query('SELECT * FROM user WHERE eliminado = 0 AND id_user = ? LIMIT 1;', $id_user);
+    if ( !$rows ) {
+        return null;
     }
     return $rows[0];
 }

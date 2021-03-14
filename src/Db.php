@@ -84,6 +84,9 @@ final class Db {
         // if query was DELETE, INSERT, or UPDATE
         else {
             // return number of rows affected
+            // Nota: si el número de filas que fueron afectadas por una consulta DELETE, INSERT O UPDATE es mayor a 1,
+            // la función devolverá falso aún cuando los cambios si se realizarón en la base de datos. Normalmente solo
+            // afectamos un solo registro.
             return ($stmt->rowCount() == 1); // true o false
         }
     }

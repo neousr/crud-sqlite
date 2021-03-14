@@ -22,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!Token::validate(escape($_POST['token']))) {
             // Si el token CSRF que enviaron no coincide con el que enviamos.
             // Re direccionar al logout
+            // echo 'Te tengo que re dirigir porque presionaste ctrl + U!';
+            // exit;
             header('Location: index.php');
             exit;
         }
@@ -153,6 +155,9 @@ function insert(array $user) {
     if ( !$res ) {
         throw new NotFoundException('Lo sentimos, no pudimos insertar el registro.');
     }
+    // Alternativa 1: Asignamos el último id insertado al índice id_user del parámetro array $user
     $user['id_user'] = Db::getInstance()->lastInsertId();
     return $user;
+    // Alternativa 2: Devolvemos el nuevo registro insertado con todos los campos
+    // return getUserById( Db::getInstance()->lastInsertId() );
 }

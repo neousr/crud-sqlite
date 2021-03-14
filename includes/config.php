@@ -14,6 +14,7 @@ require_once '../src/Token.php';
 require_once 'constants.php';
 require_once 'functions.php';
 
+session_name('ID');
 session_start();
 
 function handleException($e) {
