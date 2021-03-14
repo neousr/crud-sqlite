@@ -11,6 +11,8 @@ final class Db {
     private function __construct() {
         // $config = Config::getConfig('sqlitedb');
         // $config['dsn'], $config['username'], $config['password']
+        // SQLite: dsn => 'sqlite:../db/yourdatabase.db', username => '', password => ''
+        // MySQL: dsn => 'mysql:host=localhost:dbname=yourdatabase;charset=utf8mb4', username => 'root', password => ''
         try {
             $this->connection = new PDO('sqlite:../db/db.db', '', '', array(
                 PDO::ATTR_PERSISTENT => true,
