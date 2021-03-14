@@ -10,6 +10,9 @@
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/jquery.dataTables.min.css">
 
+    <!-- DataTables Responsive CSS -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/responsive.dataTables.min.css">
+
     <!-- Estilos propios -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/main.css">
 
@@ -62,9 +65,12 @@
     <!-- DatatTables JS -->
     <script src="<?php echo BASE_URL; ?>/js/jquery.dataTables.min.js"></script>
 
+    <!-- DatatTables Responsive JS -->
+    <script src="<?php echo BASE_URL; ?>/js/dataTables.responsive.min.js"></script>
+
     <script>
         $(document).ready(function () {
-            $('.dataTable').DataTable({
+            $('#dataTable').DataTable({
                 "language": {
                     "lengthMenu": "Mostrar _MENU_ registros por página",
                     "zeroRecords": "Nada encontrado - lo sentimos",
