@@ -1,62 +1,70 @@
 <style>
-    table.detail th {text-align: right;}
-    table.detail td {padding: 2px 14px;}
+    table.detail th {
+        text-align: right;
+    }
+
+    table.detail td {
+        padding: 2px 14px;
+    }
 </style>
-<div>
-    <h2>Detalle de Registro</h2>
+
+<div class="wrapper">
+    <div>
+        <h2>Detalle de Registro</h2>
+    </div>
+    <table class="detail">
+        <tr class="d-none">
+            <th>ID:</th>
+            <td><?php echo $user['id_user']; ?></td>
+        </tr>
+        <tr>
+            <th>Apellido:</th>
+            <td><?php echo $user['apellido']; ?></td>
+        </tr>
+        <tr>
+            <th>Nombre:</th>
+            <td><?php echo $user['nombre']; ?></td>
+        </tr>
+        <tr>
+            <th>E-mail:</th>
+            <td><?php echo $user['email']; ?></td>
+        </tr>
+        <tr>
+            <th>Teléfono:</th>
+            <td><?php echo $user['telefono']; ?></td>
+        </tr>
+        <tr>
+            <th>Registrado:</th>
+            <td><?php echo $user['creado']; ?></td>
+        </tr>
+        <tr>
+            <th>Última Modificación:</th>
+            <td><?php echo $user['modificado']; ?></td>
+        </tr>
+        <tr>
+            <th colspan="2">&nbsp;</th>
+        </tr>
+        <tr>
+            <td>
+                <a href="<?php echo BASE_URL; ?>/index.php" title="Volver a la lista"><span
+                        class="fast-reverse-button emoji">⏪</span> a la lista</a>
+            </td>
+            <td>
+                <div class="actions">
+                    <!-- Acción editar: método de envío GET -->
+                    <a href="<?php echo BASE_URL; ?>/add-edit.php?id_user=<?php echo $user['id_user']; ?>"
+                        title="Editar registro"><span class="pen emoji">🖊️</span></a>
+                    <!-- Acción eliminar: método de envío POST -->
+                    <form action="<?php echo BASE_URL; ?>/delete.php" method="POST" style="display: inline-block;"
+                        title="Eliminar registro" id="form-delete">
+                        <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
+                        <button type="submit" class="icon fs-16"><span class="cross-mark emoji">❌</span></button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
-<table class="detail">
-    <tr class="d-none">
-        <th>ID:</th>
-        <td><?php echo $user['id_user']; ?></td>
-    </tr>
-    <tr>
-        <th>Apellido:</th>
-        <td><?php echo $user['apellido']; ?></td>
-    </tr>
-    <tr>
-        <th>Nombre:</th>
-        <td><?php echo $user['nombre']; ?></td>
-    </tr>
-    <tr>
-        <th>E-mail:</th>
-        <td><?php echo $user['email']; ?></td>
-    </tr>
-    <tr>
-        <th>Teléfono:</th>
-        <td><?php echo $user['telefono']; ?></td>
-    </tr>
-    <tr>
-        <th>Registrado:</th>
-        <td><?php echo $user['creado']; ?></td>
-    </tr>
-    <tr>
-        <th>Última Modificación:</th>
-        <td><?php echo $user['modificado']; ?></td>
-    </tr>
-    <tr>
-        <th colspan="2">&nbsp;</th>
-    </tr>
-    <tr>
-        <td>
-            <a href="<?php echo BASE_URL; ?>/index.php" title="Volver a la lista"><span
-                    class="fast-reverse-button emoji">⏪</span> a la lista</a>
-        </td>
-        <td>
-            <div class="actions">
-                <!-- Acción editar: método de envío GET -->
-                <a href="<?php echo BASE_URL; ?>/add-edit.php?id_user=<?php echo $user['id_user']; ?>"
-                    title="Editar registro"><span class="pen emoji">🖊️</span></a>
-                <!-- Acción eliminar: método de envío POST -->
-                <form action="<?php echo BASE_URL; ?>/delete.php" method="POST" style="display: inline-block;"
-                    title="Eliminar registro" id="form-delete">
-                    <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
-                    <button type="submit" class="icon fs-16"><span class="cross-mark emoji">❌</span></button>
-                </form>
-            </div>
-        </td>
-    </tr>
-</table>
 
 <!-- The Modal -->
 <div id="delete-modal" class="modal">
