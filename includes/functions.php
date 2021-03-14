@@ -4,6 +4,11 @@ function escape(string $s) : string {
     return htmlspecialchars(stripslashes(trim($s)));
 }
 
+function formatDateTime($dateTime) {
+    $dateTime = new DateTime($dateTime);
+    return $dateTime->format('j/n/Y H:i');
+}
+
 function getUrlParam($name) {
     if (!array_key_exists($name, $_GET)) {
         throw new NotFoundException('El parámetro URL ' . $name . ' no ha sido encontrado.');
