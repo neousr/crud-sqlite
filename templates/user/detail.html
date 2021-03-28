@@ -113,26 +113,25 @@
             eliminarRegistro(formDelete);
         }
 
-        cancelBtn.onclick = function (e) {
-            deleteModal.style.cssText = "display: none;";
-        }
+        cancelBtn.onclick = function (e) { deleteModal.style.cssText = "display: none;"; }
 
         // When the user submit the form, open the modal 
         formDelete.onsubmit = function (e) {
             deleteModal.style.cssText = "display: block;";
             e.preventDefault();
         };
+        
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            deleteModal.style.display = "none";
-        }
+        span.onclick = function () { deleteModal.style.display = "none"; }
 
         // When the user press the escape keyboard, close the modal
+        pressEscape(deleteModal);
+    }
+    
+    function pressEscape(el) {
         d.onkeydown = function (event) {
             event = event || window.event;
-            if (event.keyCode == 27) {
-                deleteModal.style.display = "none";
-            }
+            if (event.keyCode == 27) { el.style.display = "none"; }
         }
     }
 
