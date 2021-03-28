@@ -136,9 +136,9 @@
         }
     }
 
-    function eliminarRegistro(el) {
-        const data = 'id_user=' + encodeURIComponent(el.id_user.value);
-        sendHttpRequest(el.method, el.action, data, (response) => {
+    function eliminarRegistro(form) {
+        const data = 'id_user=' + encodeURIComponent(form.id_user.value);
+        sendHttpRequest(form.method, form.action, data, (response) => {
             if (response == 'Ok') {
                 location.href = '<?php echo BASE_URL; ?>/index.php';
             } else {
