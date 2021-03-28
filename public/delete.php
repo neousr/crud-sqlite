@@ -4,6 +4,7 @@
  * este archivo solo requiere lo necesario para ejecutarse correctamente, solo
  * si se accede a el a través del método post.
  */
+session_name('ID');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {

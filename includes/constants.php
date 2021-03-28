@@ -2,6 +2,7 @@
 
 define('DOCUMENT_ROOT', dirname(__DIR__));
 define('BASE_URL', 'http://localhost/crud-sqlite/public');
+// define('BASE_URL', 'http://localhost:8000');
 
 define('LONGITUD_MAXIMA', 40);
 define('LONGITUD_MINIMA', 3);
