@@ -53,12 +53,13 @@
                 <div class="actions">
                     <!-- Acción editar: método de envío GET -->
                     <a href="<?php echo BASE_URL; ?>/add-edit.php?id_user=<?php echo $user['id_user']; ?>"
-                        title="Editar registro"><span class="pen emoji">🖊️</span></a>
+                        title="Editar registro"><span class="pen emoji">🖊️ Editar</span></a>
                     <!-- Acción eliminar: método de envío POST -->
                     <form action="<?php echo BASE_URL; ?>/delete.php" method="POST" style="display: inline-block;"
-                        title="Eliminar registro" id="form-delete">
-                        <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
-                        <button type="submit" class="icon fs-16"><span class="cross-mark emoji">❌</span></button>
+                        title="Borrar registro" id="form-delete">
+                        <button type="submit" class="icon fs-16" name="submit" value="<?php echo $user['id_user']; ?>">
+                            <span class="cross-mark emoji">❌ Borrar</span>
+                        </button>
                     </form>
                 </div>
             </td>
@@ -76,8 +77,7 @@
         </div>
         <div class="modal-body">
             <p style="margin-bottom: 1.5rem;">
-                <span class="warning emoji">⚠️</span> Este registro será
-                eliminado. ¿Estás seguro?
+                <span class="warning emoji">⚠️</span> Este registro será eliminado. ¿Estás seguro?
             </p>
         </div>
         <div class="modal-footer"></div>
@@ -136,7 +136,7 @@
     }
 
     function eliminarRegistro(form) {
-        const data = 'id_user=' + encodeURIComponent(form.id_user.value);
+        const data = 'id_user=' + encodeURIComponent(form.submit.value);
         sendHttpRequest(form.method, form.action, data, (response) => {
             if (response == 'Ok') {
                 location.href = '<?php echo BASE_URL; ?>/index.php';
