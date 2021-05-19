@@ -7,6 +7,7 @@ body {
     padding: 0;
     background: #f8f9fa;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
 
 a {
@@ -126,16 +127,18 @@ a {
 }
 /* Fin delete dialog */
 
-/* Button estilo ícono */
-button.icon {
+/* Button estilo ícono de eliminación */
+table button {
     padding: 0;
     margin-left: 8px;
     background: transparent;
     border: none;
     cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: inherit;
 }
 
-button.icon:focus {
+table button:focus {
     outline: none;
 }
 /* Fin button */
@@ -176,7 +179,7 @@ label {
 
 .form-error {
     color: #dc143c;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .wrapper {

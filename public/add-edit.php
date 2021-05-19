@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (array_key_exists('token', $_POST)) {
         if (!Token::validate(escape($_POST['token']))) {
             // Si el token CSRF que enviaron no coincide con el que enviamos.
-            // Re direccionar al logout
+            // Re direccionar
             // echo 'Te tengo que re dirigir porque presionaste ctrl + U!';
             // exit;
             header('Location: index.php');
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // No existe la key token
     else {
-        // Re direccionar al logout
+        // Re direccionar
         header('Location: index.php');
         exit;
     }

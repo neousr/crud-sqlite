@@ -12,59 +12,61 @@
     <div>
         <h2>Detalle de Registro</h2>
     </div>
-    <table class="detail">
-        <tr class="d-none">
-            <th>ID:</th>
-            <td><?php echo $user['id_user']; ?></td>
-        </tr>
-        <tr>
-            <th>Apellido:</th>
-            <td><?php echo $user['apellido']; ?></td>
-        </tr>
-        <tr>
-            <th>Nombre:</th>
-            <td><?php echo $user['nombre']; ?></td>
-        </tr>
-        <tr>
-            <th>E-mail:</th>
-            <td><?php echo $user['email']; ?></td>
-        </tr>
-        <tr>
-            <th>Teléfono:</th>
-            <td><?php echo $user['telefono']; ?></td>
-        </tr>
-        <tr>
-            <th>Registrado:</th>
-            <td><?php echo $user['creado']; ?></td>
-        </tr>
-        <tr>
-            <th>Última Modificación:</th>
-            <td><?php echo $user['modificado']; ?></td>
-        </tr>
-        <tr>
-            <th colspan="2">&nbsp;</th>
-        </tr>
-        <tr>
-            <td>
-                <a href="<?php echo BASE_URL; ?>/index.php" title="Volver a la lista"><span
-                        class="fast-reverse-button emoji">⏪</span> a la lista</a>
-            </td>
-            <td>
-                <div class="actions">
-                    <!-- Acción editar: método de envío GET -->
-                    <a href="<?php echo BASE_URL; ?>/add-edit.php?id_user=<?php echo $user['id_user']; ?>"
-                        title="Editar registro"><span class="pen emoji">🖊️ Editar</span></a>
-                    <!-- Acción eliminar: método de envío POST -->
-                    <form action="<?php echo BASE_URL; ?>/delete.php" method="POST" style="display: inline-block;"
-                        title="Borrar registro" id="form-delete">
-                        <button type="submit" class="icon fs-16" name="submit" value="<?php echo $user['id_user']; ?>">
+    <!-- Acción eliminar: método de envío POST -->
+    <form action="<?php echo BASE_URL; ?>/delete.php" method="POST" id="form-delete">
+        <input type="hidden" name="token" value="<?= htmlspecialchars(Token::csrf()); ?>" readonly spellcheck="false"
+            autocomplete="off" autocorrect="off" autocapitalize="off">
+        <table class="detail">
+            <tr class="d-none">
+                <th>ID:</th>
+                <td><?php echo $user['id_user']; ?></td>
+            </tr>
+            <tr>
+                <th>Apellido:</th>
+                <td><?php echo $user['apellido']; ?></td>
+            </tr>
+            <tr>
+                <th>Nombre:</th>
+                <td><?php echo $user['nombre']; ?></td>
+            </tr>
+            <tr>
+                <th>E-mail:</th>
+                <td><?php echo $user['email']; ?></td>
+            </tr>
+            <tr>
+                <th>Teléfono:</th>
+                <td><?php echo $user['telefono']; ?></td>
+            </tr>
+            <tr>
+                <th>Registrado:</th>
+                <td><?php echo $user['creado']; ?></td>
+            </tr>
+            <tr>
+                <th>Última Modificación:</th>
+                <td><?php echo $user['modificado']; ?></td>
+            </tr>
+            <tr>
+                <th colspan="2">&nbsp;</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="<?php echo BASE_URL; ?>/index.php" title="Volver a la lista"><span
+                            class="fast-reverse-button emoji">⏪</span> a la lista</a>
+                </td>
+                <td>
+                    <div class="actions">
+                        <!-- Acción editar: método de envío GET -->
+                        <a href="<?php echo BASE_URL; ?>/add-edit.php?id_user=<?php echo $user['id_user']; ?>"
+                            title="Editar registro"><span class="pen emoji">🖊️ Editar</span>
+                        </a>
+                        <button type="submit" title="Borrar registro" name="submit" value="<?php echo $user['id_user']; ?>">
                             <span class="cross-mark emoji">❌ Borrar</span>
                         </button>
-                    </form>
-                </div>
-            </td>
-        </tr>
-    </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 
 <!-- The Modal -->
@@ -120,14 +122,14 @@
             deleteModal.style.cssText = "display: block;";
             e.preventDefault();
         };
-        
+
         // When the user clicks on <span> (x), close the modal
         span.onclick = function () { deleteModal.style.display = "none"; }
 
         // When the user press the escape keyboard, close the modal
         pressEscape(deleteModal);
     }
-    
+
     function pressEscape(el) {
         d.onkeydown = function (event) {
             event = event || window.event;
@@ -136,7 +138,9 @@
     }
 
     function eliminarRegistro(form) {
-        const data = 'id_user=' + encodeURIComponent(form.submit.value);
+        // Obtenemos el valor del botón de envió de formulario y el token
+        const data = 'id_user=' + encodeURIComponent(form.submit.value) +
+                     '&token=' + encodeURIComponent(form.token.value);
         sendHttpRequest(form.method, form.action, data, (response) => {
             if (response == 'Ok') {
                 location.href = '<?php echo BASE_URL; ?>/index.php';

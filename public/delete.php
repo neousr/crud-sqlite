@@ -14,8 +14,26 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 require_once '../includes/functions.php';
 require_once '../src/Db.php';
+require_once '../src/Token.php';
 
 $id_user = $error = null;
+
+if (array_key_exists('token', $_POST)) {
+    if (!Token::validate(escape($_POST['token']))) {
+        // Si el token CSRF que enviaron no coincide con el que enviamos.
+        // Re direccionar
+        // echo 'Te tengo que re dirigir porque presionaste ctrl + U!';
+        // exit;
+        echo 'Error';
+        exit;
+    }
+}
+// No existe la key token
+else {
+    // Re direccionar
+    echo 'Error';
+    exit;
+}
 
 if (array_key_exists('id_user', $_POST)) {
     $id_user = escape( $_POST['id_user'] );
