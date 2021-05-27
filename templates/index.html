@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
     <meta charset="utf-8">
@@ -40,7 +40,7 @@
 
     <?php if ($flashes): ?>
     <?php foreach ($flashes as $flash): ?>
-    <div class="alert alert-<?= $flash['class']; ?> text-center">
+    <div class="alert alert-<?= $flash['class']; ?> text-center" style="margin-top: 2rem;">
         <span class="closebtn" onclick="this.parentElement.style.display='none';" title="cerrar">&times;</span>
         <?= htmlspecialchars( $flash['message'] ); ?>
     </div>

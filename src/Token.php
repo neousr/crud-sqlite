@@ -3,10 +3,13 @@
 class Token {
 
     public static function csrf() {
-        $_SESSION['_token'] = self::generate();
-        return $_SESSION['_token'];
+        // if (empty($_SESSION['_token'])) {
+        //     return $_SESSION['_token'] = self::generate();
+        // }
+        // return $_SESSION['_token'];
+        return $_SESSION['_token'] = self::generate();
     }
-
+    
     private static function generate($length = 32) {
         if (!isset($length) || intval($length) <= 8) {
             $length = 32;
