@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="es" dir="ltr">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +27,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Header -->
@@ -40,7 +42,7 @@
 
     <?php if ($flashes): ?>
     <?php foreach ($flashes as $flash): ?>
-    <div class="alert alert-<?= $flash['class']; ?> text-center" style="margin-top: 2rem;">
+    <div class="alert alert-<?= $flash['class']; ?> text-center mt-4">
         <span class="closebtn" onclick="this.parentElement.style.display='none';" title="cerrar">&times;</span>
         <?= htmlspecialchars( $flash['message'] ); ?>
     </div>
@@ -68,6 +70,7 @@
     <!-- DatatTables Responsive JS -->
     <script src="<?php echo BASE_URL; ?>/js/dataTables.responsive.min.js"></script>
 
+
     <script>
         $(document).ready(function () {
             $('#dataTable').DataTable({
@@ -90,60 +93,11 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initEmailValidation();
+        d.addEventListener('DOMContentLoaded', () => {
             closeAlerts();
             initFormErrors();
         });
-
-        // Focus en el primer error que exista en formularios.
-        function initFormErrors() {
-            const obj = d.querySelector('form .invalid');
-            if (obj) obj.focus();
-        }
-
-        function closeAlerts() {
-            // Get all elements with class="closebtn"
-            const close = d.getElementsByClassName("closebtn");
-            const M = close.length;
-            var i, div;
-            // Loop through all close buttons
-            for (i = 0; i < M; i++) {
-                close[i].onclick = function () {
-                    // Get the parent of <span class="closebtn"> (<div class="alert">)
-                    div = this.parentElement;
-                    // Set the opacity of div to 0 (transparent)
-                    div.style.opacity = "0";
-                    // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
-                    setTimeout(function () { div.style.display = "none"; }, 600);
-                }
-            }
-        }
-
-        // Solo verificará la existencia o no del e-mail
-        function initEmailValidation() {
-            const email = d.querySelector("form #email");
-            if (!email) return;
-            email.addEventListener("blur", function (e) {
-                const value = email.value.trim();
-                if (isEmpty(value)) {
-                    // setError(email, "No puedes dejar este campo en blanco.");
-                } else if (!validEmail(value)) {
-                    // setError(email, "Introduce una dirección de correo electrónico válida.");
-                } else {
-                    // Solicitud AJAX
-                    const data = "email=" + encodeURIComponent(value.toLowerCase());
-                    sendHttpRequest('POST', '<?php echo BASE_URL; ?>/email_exists.php', data, (res) => {
-                        if (res == "Ok") {
-                            setSuccess(email);
-                        } else {
-                            setError(email, res);
-                        }
-                    });
-                }
-            });
-        }
-
     </script>
 </body>
+
 </html>
