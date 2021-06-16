@@ -4,7 +4,7 @@ require_once '../includes/config.php';
 
 $user = null;
 $errors = [];
-
+$cantErrs = null;
 $edit = array_key_exists('id_user', $_GET);
 
 if ($edit) {
@@ -47,7 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (array_key_exists('guardar', $_POST)) {
         foreach ($user as $key => $value) {
             if (array_key_exists($key, $_POST)) {
-                $user[$key] = escape( $_POST[$key] );
+                // Este archivo procesa el registro y la edición, por consiguiente no podemos verificar si contiene valor el campo
+                // if($_POST[$key])
+                    $user[$key] = escape( $_POST[$key] );
             }
         }
 
@@ -112,6 +114,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Si actualizamos ya contamos con el id de usuario
             header('Location: detail.php?id_user=' . $user['id_user']);
             exit;
+        }
+        else {
+            $n = count($errors);
+            $cantErrs = 'Tienes ' . $n . ' error';
+            $cantErrs .= $n == 1 ? '.' : 'es.';
+            $cantErrs .= ' Por favor, revise el formulario.';
         }
     }
 }
