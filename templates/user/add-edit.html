@@ -77,7 +77,7 @@
             // setError(email, "Introduce una dirección de correo electrónico válida.");
         } else {
             // Solicitud AJAX
-            const url = "http://localhost/crud-sqlite/public/email_exists.php";
+            const url = "<?php echo BASE_URL . /email_exists.php; ?>";
             const data = "email=" + encodeURIComponent(value.toLowerCase());
             sendHttpRequest('POST', url, data, (res) => {
                 if (res == "Ok") {
