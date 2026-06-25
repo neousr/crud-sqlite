@@ -126,14 +126,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 //
 
-$template = DOCUMENT_ROOT . '/templates/user/add-edit.html';
+$template = APP_ROOT . '/templates/user/add-edit.html';
 
 $flashes = null;
 if (Flash::hasFlashes()) {
     $flashes = Flash::getFlashes();
 }
 
-require_once DOCUMENT_ROOT . '/templates/index.html';
+require_once APP_ROOT . '/templates/index.html';
 
 // 
 
