@@ -1,7 +1,11 @@
 <?php
 
 define('DOCUMENT_ROOT', dirname(__DIR__));
-define('BASE_URL', 'http://localhost/crud-sqlite/public');
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') 
+    ? "https://" 
+    : "http://";
+
+define('BASE_URL', $protocol . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']));
 // define('BASE_URL', 'http://localhost:8000');
 
 define('LONGITUD_MAXIMA', 40);
